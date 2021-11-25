@@ -1,4 +1,5 @@
-# SIMasjid (Sistem Informasi Manajemen Masjid)
+# SIMasjid
+## Sistem Informasi Manajemen Masjid
 
 Sebuah Aplikasi yang digunakan untuk mengelola segala informasi yang terkait dengan sebuah masjid, mulai dari kepengurusan Takmir, Remaja Masjid, Kegiatan Masjid, Inventaris Masjid, sampai ke Laporan Keuangan Masjid (Zakat, Infaq, Shodaqah).
 
