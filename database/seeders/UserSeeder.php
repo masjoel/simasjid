@@ -37,16 +37,5 @@ class UserSeeder extends Seeder
             'bio' => 'Owner',
             'email_verified_at' => now(),
         ]);
-        User::create([
-            'perusahaan_id' => 1,
-            'name' => 'dr. Ganis Irawan, SpPD',
-            'username' => 'ganis',
-            'email' => 'drganis@drganis.com',
-            'password' => Hash::make('super123'),
-            'roles' => 'dante',
-            'phone' => '081111111111',
-            'bio' => 'Dante',
-            'email_verified_at' => now(),
-        ]);
     }
 }

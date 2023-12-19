@@ -18,11 +18,11 @@ use App\Http\Controllers\ProfilBisnisController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/', [FormulirContoller::class, 'formPejuang'])->name('home');
-Route::post('/', [FormulirContoller::class, 'storePejuang']);
-Route::get('/form-peserta', [FormulirContoller::class, 'formPejuang'])->name('form.pejuang');
-Route::post('/form-peserta', [FormulirContoller::class, 'storePejuang']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/', [FormulirContoller::class, 'formPejuang'])->name('home');
+// Route::post('/', [FormulirContoller::class, 'storePejuang']);
+// Route::get('/form-peserta', [FormulirContoller::class, 'formPejuang'])->name('form.pejuang');
+// Route::post('/form-peserta', [FormulirContoller::class, 'storePejuang']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index']
