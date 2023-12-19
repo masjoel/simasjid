@@ -1,0 +1,78 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* CSS untuk mengatur konten utama */
+.content {
+    flex: 1;
+    /* padding: 20px; */
+}
+
+/* CSS untuk mengatur footer */
+.footer {
+    background-color: #17a2b8;
+    color: white;
+    padding: 1rem;
+}
+@media (max-width: 600px) {
+    .custom-col {
+        width: 50%;
+    }
+}
+
+@media (max-width: 400px) {
+    .text-beli {
+        display: none;
+    }
+}
+@media (max-width: 330px) {
+    .col-xs-12 {
+        width: 100%;
+    }
+}
+
+#cart-icon {
+    position: relative;
+}
+
+#cart-icon img {
+    width: 30px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+.text-card-custom {
+    color: #05a1a3;
+}
+.text-muted {
+    color: white !important;
+}
+#item-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: -5px;
+    color: white;
+    background-color: red;
+    /* background-color: rgb(33, 114, 205); */
+    border-radius: 50%;
+    padding: 1px 6px;
+    font-size: 12px;
+}
+span.page-link {
+    color: white !important;
+    background: #17a2b8 !important;
+    /* color: black !important; */
+    /* background: orange !important; */
+}
+.page-link {
+    border: 1px solid #17a2b8 !important;
+    /* border: 1px solid rgb(231, 202, 157) !important; */
+}
+a.page-link {
+    color: gray !important;
+}
