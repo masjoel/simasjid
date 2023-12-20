@@ -12,13 +12,13 @@
         <section class="section">
             <div class="section-header">
                 <h1>{{ $title }}</h1>
-                @include('pages.peserta.breadcrumb')
+                @include('pages.penduduk.breadcrumb')
             </div>
 
             <div class="section-body">
 
                 <div class="card">
-                    <form action="{{ route('peserta.update', $pemilih) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('penduduk.update', $pemilih) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
@@ -57,7 +57,8 @@
                                     <div class="form-group mb-2">
                                         <label>Alamat</label>
                                         <input name="alamat" type="text"
-                                            class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat', $pemilih->alamat) }}">
+                                            class="form-control @error('alamat') is-invalid @enderror"
+                                            value="{{ old('alamat', $pemilih->alamat) }}">
                                         @error('alamat')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Ramsey\Uuid\Uuid;
+use App\Models\Provinsi;
+use App\Models\Kabupaten;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
 use App\Models\ImageResize;
 use App\Models\ProfilBisnis;
 use Illuminate\Http\Request;
@@ -54,7 +58,11 @@ class ProfilBisnisController extends Controller
      */
     public function edit(ProfilBisnis $profil_bisni)
     {
-        return view('pages.profile.edit')->with(['profilBisnis' => $profil_bisni, 'title' => 'Profil']);
+        $provinsi = Provinsi::all();
+        $kabupaten = Kabupaten::where('provinsi_id', $profil_bisni->provinsi_id)->get();
+        $kecamatan = Kecamatan::where('kabupaten_id', $profil_bisni->kabupaten_id)->get();
+        $kelurahan = Kelurahan::where('kecamatan_id', $profil_bisni->kecamatan_id)->get();
+        return view('pages.profile.edit')->with(['profilBisnis' => $profil_bisni, 'title' => 'Profil', 'provinsi' => $provinsi, 'kabupaten' => $kabupaten, 'kecamatan' => $kecamatan, 'kelurahan' => $kelurahan ]);
     }
 
     /**

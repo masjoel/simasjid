@@ -11,7 +11,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ number_format($totalMembers->total_saksi) }} peserta</h1>
+                <h1>{{ number_format($totalMembers->total_saksi) }} penduduk</h1>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -129,7 +129,7 @@
                 <div class="col-lg-4 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Peserta baru</h4>
+                            <h4>Penduduk baru</h4>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled list-unstyled-border">
@@ -149,7 +149,7 @@
                                 @endforeach
                             </ul>
                             <div class="pt-1 pb-1 text-center">
-                                <a href="{{ route('peserta.index') }}" class="btn btn-primary btn-lg btn-round">
+                                <a href="{{ route('penduduk.index') }}" class="btn btn-primary btn-lg btn-round">
                                     View All
                                 </a>
                             </div>

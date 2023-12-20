@@ -29,21 +29,23 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-2">
-                                        <label>Nama Usaha</label>
-                                        <input type="text"
-                                            class="form-control @error('nama_client') is-invalid @enderror"
-                                            name="nama_client" value="{{ old('nama_client', $profilBisnis->nama_client) }}"
+                                        <label>ID Masjid/Musholla</label>
+                                        <input type="text" class="form-control @error('id_client') is-invalid @enderror"
+                                            name="id_client" value="{{ old('id_client', $profilBisnis->id_client) }}"
                                             autocomplete="off">
-                                        @error('nama_client')
+                                        @error('id_client')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </div>
                                     <div class="form-group mb-2">
-                                        <label>Deskripsi</label>
-                                        <textarea class="form-control @error('desc_app') is-invalid @enderror" data-height="90" name="desc_app">{{ old('desc_app', $profilBisnis->desc_app) }}</textarea>
-                                        @error('desc_app')
+                                        <label>Nama Masjid/Musholla</label>
+                                        <input type="text"
+                                            class="form-control @error('nama_client') is-invalid @enderror"
+                                            name="nama_client" value="{{ old('nama_client', $profilBisnis->nama_client) }}"
+                                            autocomplete="off">
+                                        @error('nama_client')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -58,6 +60,7 @@
                                             </div>
                                         @enderror
                                     </div>
+
                                     <div class="form-group mb-2">
                                         <label>Email</label>
                                         <input type="email" class="form-control @error('email') is-invalid @enderror"
@@ -70,7 +73,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group mb-2">
-                                        <label>Pimpinan</label>
+                                        <label>Ketua Takmir</label>
                                         <input type="text" class="form-control @error('signature') is-invalid @enderror"
                                             name="signature" value="{{ old('signature', $profilBisnis->signature) }}"
                                             autocomplete="off">
@@ -80,26 +83,53 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <div class="form-group mb-2">
-                                        <label>Rekening Bank</label>
-                                        <textarea class="form-control @error('bank') is-invalid @enderror" data-height="60" name="bank">{{ old('bank', $profilBisnis->bank) }}</textarea>
-                                        @error('bank')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-2">
-                                        <label>Catatan</label>
-                                        <textarea class="form-control @error('footnot') is-invalid @enderror" data-height="90" name="footnot">{{ old('footnot', $profilBisnis->footnot) }}</textarea>
-                                        @error('footnot')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
+                                        <label>Provinsi</label>
+                                        <select class="form-control select2" name="provinsi_id" id="provinsi">
+                                            <option value="0">- pilih Provinsi -</option>
+                                            @foreach ($provinsi as $item)
+                                                <option value="{{ $item->id }}" {{ $item->id == $profilBisnis->provinsi_id ? 'selected' : '' }}>
+                                                    {{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
+                                    <div class="form-group mb-2">
+                                        <label>Kabupaten/Kota</label>
+                                        <select class="form-control select2" name="kabupaten_id" id="kabupaten">
+                                            @foreach ($kabupaten as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $item->id == $profilBisnis->kabupaten_id ? 'selected' : '' }}>
+                                                    {{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label>Kecamatan</label>
+                                        <select class="form-control select2" name="kecamatan_id" id="kecamatan">
+                                            @foreach ($kecamatan as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $item->id == $profilBisnis->kecamatan_id ? 'selected' : '' }}>
+                                                    {{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{-- <div class="form-group mb-2">
+                                        <label>Kelurahan</label>
+                                        <select class="form-control select2" name="kelurahan_id" id="kelurahan">
+                                            @foreach ($kelurahan as $item)
+                                                <option value="{{ $item->id }}"
+                                                    {{ $item->id == $pemilih->kelurahan_id ? 'selected' : '' }}>
+                                                    {{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div> --}}
                                     <div class="form-group mb-2">
                                         <label>Logo</label>
                                         <div id="image-preview"
@@ -138,4 +168,48 @@
     <script src="{{ asset('library/upload-preview/upload-preview.js') }}"></script>
     <script src="{{ asset('js/page/features-post-create.js') }}"></script>
     <script src="{{ asset('library/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script>
+        $(document).on("change", "#provinsi", function(e) {
+            e.preventDefault()
+            let provinsiId = this.value;
+            let kabupatenSelect = document.getElementById('kabupaten');
+            kabupatenSelect.innerHTML = '<option value="">Pilih Kabupaten/Kota</option>';
+
+            if (!provinsiId) {
+                return;
+            }
+            fetch('/api/kabupaten/' + provinsiId)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(item => {
+                        var option = document.createElement('option');
+                        option.value = item.id;
+                        option.textContent = item.type + ' ' + item.name;
+                        kabupatenSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+        $(document).on("change", "#kabupaten", function(e) {
+            e.preventDefault()
+            let kabupatenId = this.value;
+            let kecamatanSelect = document.getElementById('kecamatan');
+            kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+
+            if (!kabupatenId) {
+                return;
+            }
+            fetch('/api/kecamatan/' + kabupatenId)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(item => {
+                        var option = document.createElement('option');
+                        option.value = item.id;
+                        option.textContent = item.name;
+                        kecamatanSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
 @endpush

@@ -62,7 +62,7 @@
                 style="background-image: url(https://source.unsplash.com/600x150?mosque);">
                 <div class="container">
                     <div class="page-title__content">
-                        <h1 class="page-title__name">{{ klien('nama_client') }}</h1>
+                        <h1 class="page-title__name">{{ klien('nama_app') }}</h1>
                         <p class="page-title__slogan">{{ klien('desc_app') }}</p>
                     </div>
                 </div>

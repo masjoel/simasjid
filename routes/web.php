@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FormulirContoller;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\ProfilBisnisController;
 
 /*
@@ -19,10 +20,6 @@ use App\Http\Controllers\ProfilBisnisController;
 |
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
-// Route::get('/', [FormulirContoller::class, 'formPejuang'])->name('home');
-// Route::post('/', [FormulirContoller::class, 'storePejuang']);
-// Route::get('/form-peserta', [FormulirContoller::class, 'formPejuang'])->name('form.pejuang');
-// Route::post('/form-peserta', [FormulirContoller::class, 'storePejuang']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index']
@@ -33,6 +30,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('profil-bisnis', ProfilBisnisController::class);
 
-    Route::get('/export-peserta', [PesertaController::class, 'exportToExcel']);
-    Route::resource('peserta', PesertaController::class);
+    Route::get('/export-penduduk', [PendudukController::class, 'exportToExcel']);
+    Route::resource('penduduk', PendudukController::class);
 });

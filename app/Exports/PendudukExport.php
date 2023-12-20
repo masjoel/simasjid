@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class PesertaExport implements FromView
+class PendudukExport implements FromView
 {
     public function __construct(Request $request)
     {
@@ -19,15 +19,15 @@ class PesertaExport implements FromView
     {
         $params = $this->request->all();
         $data = [
-            'dataRows' => Member::leftJoin('provinsis', 'members.provinsi_id', '=', 'provinsis.id')->leftJoin('kabupatens', 'members.kabupaten_id', '=', 'kabupatens.id')->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')->leftJoin('kelurahans', 'members.kelurahan_id', '=', 'kelurahans.id')->when($params['search'], function ($query, $search) {
+            'dataRows' => Member::leftJoin('provinsis', 'penduduks.provinsi_id', '=', 'provinsis.id')->leftJoin('kabupatens', 'penduduks.kabupaten_id', '=', 'kabupatens.id')->leftJoin('kecamatans', 'penduduks.kecamatan_id', '=', 'kecamatans.id')->leftJoin('kelurahans', 'penduduks.kelurahan_id', '=', 'kelurahans.id')->when($params['search'], function ($query, $search) {
                 $query->where(function ($subQuery) use ($search) {
-                    $subQuery->where('members.nama', 'like', '%' . $search . '%');
+                    $subQuery->where('penduduks.nama', 'like', '%' . $search . '%');
                 })->orWhere(function ($subQuery) use ($search) {
-                    $subQuery->where('members.nik', 'like', '%' . $search . '%');
+                    $subQuery->where('penduduks.nik', 'like', '%' . $search . '%');
                 })->orWhere(function ($subQuery) use ($search) {
-                    $subQuery->where('members.telpon', 'like', '%' . $search . '%');
+                    $subQuery->where('penduduks.telpon', 'like', '%' . $search . '%');
                 })->orWhere(function ($subQuery) use ($search) {
-                    $subQuery->where('members.alamat', 'like', '%' . $search . '%');
+                    $subQuery->where('penduduks.alamat', 'like', '%' . $search . '%');
                 });
             })
                 ->when($params['provinsi'], function ($query, $searchProv) {
@@ -42,12 +42,12 @@ class PesertaExport implements FromView
                 ->when($params['kelurahan'], function ($query, $searchKel) {
                     $query->where('kelurahans.id', '=', $searchKel);
                 })
-                ->select('members.*', 'provinsis.name as provinsi', 'kabupatens.name as kabupaten', 'kabupatens.type as tipe_kab', 'kecamatans.name as kecamatan', 'kelurahans.name as kelurahan')
-                ->orderBy('members.id', 'desc')->get(),
+                ->select('penduduks.*', 'provinsis.name as provinsi', 'kabupatens.name as kabupaten', 'kabupatens.type as tipe_kab', 'kecamatans.name as kecamatan', 'kelurahans.name as kelurahan')
+                ->orderBy('penduduks.id', 'desc')->get(),
         ];
         if ($params['nik'] == 0) {
-            return view('pages.peserta.export-tanpa-nik', $data);
+            return view('pages.penduduk.export-tanpa-nik', $data);
         }
-        return view('pages.peserta.export', $data);
+        return view('pages.penduduk.export', $data);
     }
 }

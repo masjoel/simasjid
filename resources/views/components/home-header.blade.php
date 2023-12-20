@@ -42,7 +42,7 @@
                     </div>
                     <div class="site__brand">
                         <a title="Logo" href="{{ route('home') }}" class="site__brand__logo"><img
-                                src="{{ klien('logo') == null ? asset('image/logo-bakorsi.jpeg') : Storage::url(klien('logo')) }}" style="height:80px; width:auto" alt="{{ klien('nama_client') }}"></a>
+                                src="{{ klien('logo') == null ? asset('image/simasjid-logo.jpg') : Storage::url(klien('logo')) }}" style="height:80px; width:auto" alt="{{ klien('nama_client') }}"></a>
                     </div>
                 </div>
             </div>

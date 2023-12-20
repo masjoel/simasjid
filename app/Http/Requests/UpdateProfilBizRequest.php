@@ -27,6 +27,10 @@ class UpdateProfilBizRequest extends FormRequest
             'alamat_client' => 'string|max:200',
             'signature' => 'string|max:50',
             'email' => 'string|max:100',
+            'id_client' => 'string|max:100',
+            'provinsi_id' => 'numeric',
+            'kabupaten_id' => 'numeric',
+            'kecamatan_id' => 'numeric',
         ];
     }
 }

@@ -23,7 +23,7 @@
         <section class="section">
             <div class="section-header">
                 <h1>{{ $title }}</h1>
-                @include('pages.peserta.breadcrumb')
+                @include('pages.penduduk.breadcrumb')
 
             </div>
             <div class="section-body">
@@ -78,9 +78,9 @@
                                             @endif
                                         </tr>
                                         @php $i=$nomor; @endphp
-                                        @foreach ($pesertas as $index => $item)
+                                        @foreach ($penduduks as $index => $item)
                                             <tr>
-                                                <td width="50">{{ $index + $pesertas->firstItem() }}</td>
+                                                <td width="50">{{ $index + $penduduks->firstItem() }}</td>
                                                 <td nowrap>{{ $item->nama }}</td>
                                                 <td>{{ $item->nik }}</td>
                                                 <td>{{ $item->telpon }}</td>
@@ -101,7 +101,7 @@
                                                 @if (Auth::user()->roles == 'deputi' || Auth::user()->username == 'masmin')
                                                     <td>
                                                         <div class="d-flex justify-content-center">
-                                                            <a href="{{ route('peserta.edit', $item->id) }}"
+                                                            <a href="{{ route('penduduk.edit', $item->id) }}"
                                                                 class="btn btn-sm btn-info text-nowrap" id="edit-data"
                                                                 title="Edit"><i class="fa fa-edit"></i> Edit</a>
                                                             <a href="#" class="ml-2 btn btn-sm btn-danger"
@@ -118,7 +118,7 @@
                                 <div class="float-right mt-3">
                                     <nav>
                                         <ul class="pagination pagination-sm">
-                                            {{ $pesertas->withQueryString()->links('pagination::bootstrap-4') }}
+                                            {{ $penduduks->withQueryString()->links('pagination::bootstrap-4') }}
                                         </ul>
                                     </nav>
                                 </div>
@@ -320,7 +320,7 @@
             params.append('nik', 1);
 
             var queryString = params.toString();
-            window.location.href = BASE_URL + '/export-peserta?' + queryString;
+            window.location.href = BASE_URL + '/export-penduduk?' + queryString;
         });
         // --- Export tanpa NIK ---
         $(document).on("click", "a#export-data-tanpa-nik", function(e) {
@@ -338,7 +338,7 @@
             params.append('nik', 0);
 
             var queryString = params.toString();
-            window.location.href = BASE_URL + '/export-peserta?' + queryString;
+            window.location.href = BASE_URL + '/export-penduduk?' + queryString;
         });
         // --- SUBMIT Filter ---
         $('form#filter-form').submit(function(e) {
@@ -354,7 +354,7 @@
             params.append('simpul', form_data.get('simpul'));
 
             var queryString = params.toString();
-            window.location.href = BASE_URL + '/peserta?' + queryString;
+            window.location.href = BASE_URL + '/penduduk?' + queryString;
         });
         // --- SUBMIT FORM ---
         $('form#main-form').submit(function(e) {
@@ -363,7 +363,7 @@
 
             $.ajax({
                 type: 'post',
-                url: BASE_URL + "/import-peserta",
+                url: BASE_URL + "/import-penduduk",
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
@@ -377,15 +377,15 @@
                 },
                 success: function(res) {
                     swal.close();
-                    showAlertOnSubmit(res, '#add-modal', '', BASE_URL + '/peserta', );
+                    showAlertOnSubmit(res, '#add-modal', '', BASE_URL + '/penduduk', );
                 },
             })
         });
         $(document).on("click", "a#delete-data", function(e) {
             e.preventDefault();
             let id = $(this).data('id');
-            showDeletePopup(BASE_URL + '/peserta/' + id, '{{ csrf_token() }}', '', '',
-                BASE_URL + '/peserta');
+            showDeletePopup(BASE_URL + '/penduduk/' + id, '{{ csrf_token() }}', '', '',
+                BASE_URL + '/penduduk');
         });
     </script>
 @endpush

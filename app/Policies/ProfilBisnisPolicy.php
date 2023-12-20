@@ -13,7 +13,7 @@ class ProfilBisnisPolicy
      */
     public function viewAny(User $user): bool
     {
-        if ($user->username === 'masmin' || $user->roles === 'superadmin') {
+        if ($user->username === 'admin' || $user->roles === 'superadmin') {
             return true;
         }
         return false;
@@ -32,7 +32,7 @@ class ProfilBisnisPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->username === 'masmin' || $user->roles === 'superadmin') {
+        if ($user->username === 'admin' || $user->roles === 'superadmin') {
             return true;
         }
         return false;
@@ -43,7 +43,7 @@ class ProfilBisnisPolicy
      */
     public function update(User $user, ProfilBisnis $profil_bisni): bool
     {
-        if ($user->username === 'masmin' || $user->roles === 'superadmin') {
+        if ($user->username === 'admin' || $user->roles === 'superadmin') {
             return true;
         }
         return false;
@@ -54,7 +54,7 @@ class ProfilBisnisPolicy
      */
     public function delete(User $user, ProfilBisnis $profil_bisni): bool
     {
-        if ($user->username === 'masmin' || $user->roles === 'superadmin') {
+        if ($user->username === 'admin' || $user->roles === 'superadmin') {
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ class ProfilBisnisPolicy
      */
     public function restore(User $user, ProfilBisnis $profil_bisni): bool
     {
-        if ($user->username === 'masmin' || $user->roles === 'superadmin') {
+        if ($user->username === 'admin' || $user->roles === 'superadmin') {
             return true;
         }
         return false;
@@ -76,7 +76,7 @@ class ProfilBisnisPolicy
      */
     public function forceDelete(User $user, ProfilBisnis $profil_bisni): bool
     {
-        if ($user->username === 'masmin' || $user->roles === 'superadmin') {
+        if ($user->username === 'admin' || $user->roles === 'superadmin') {
             return true;
         }
         return false;

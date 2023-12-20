@@ -21,10 +21,10 @@ class UpdateMemberRequest extends FormRequest
      */
     public function rules(): array
     {
-        $userId = $this->route('pesertum');
+        $userId = $this->route('penduduk');
         return [
             'nama' => 'required|string|max:100',
-            'nik' => 'required|numeric|unique:members,nik,'. $userId->id,
+            'nik' => 'required|numeric|unique:penduduks,nik,'. $userId->id,
             'telpon' => 'required|numeric',
             'alamat' => 'required|string',
             'rt' => 'required|numeric',

@@ -10,13 +10,13 @@
         <section class="section">
             <div class="section-header">
                 <h1>{{ $title }}</h1>
-                @include('pages.peserta.breadcrumb')
+                @include('pages.penduduk.breadcrumb')
             </div>
 
             <div class="section-body">
 
                 <div class="card">
-                    <form action="{{ route('peserta.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('penduduk.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="row">
