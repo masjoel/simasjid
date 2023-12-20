@@ -10,7 +10,7 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <!-- favicons -->
-    {{-- <link rel="shortcut icon" href="{{ asset('image/logo-bakorsi.jpeg') }}"> --}}
+    <link rel="shortcut icon" href="{{ asset('image/simasjid-logo.jpg') }}">
 
     <!-- Style CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('fonts/jost/stylesheet.css') }}" />
@@ -30,6 +30,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .page-title--small {
+            height: 160px !important;
+            background-color: goldenrod !important;
+            /* background-color: #be8718 !important; */
+        }
+    </style>
     <!-- jQuery -->
     <script src="{{ asset('js/jquery-1.12.4.js') }}"></script>
     <script src="{{ asset('libs/popper/popper.js') }}"></script>
@@ -52,7 +59,7 @@
         @include('components.home-header')
         <main id="main" class="site-main">
             <div class="page-title page-title--small page-title--blog align-left"
-                style="background-image: url(images/bg/bg-blog.png);">
+                style="background-image: url(https://source.unsplash.com/600x150?mosque);">
                 <div class="container">
                     <div class="page-title__content">
                         <h1 class="page-title__name">{{ klien('nama_client') }}</h1>

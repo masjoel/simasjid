@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="popup__menu popup__box">
                                     <ul class="menu-arrow">
-                                        <li>
+                                        {{-- <li>
                                             <a href="#" title="Pendaftaran">Pendaftaran</a>
                                             <ul class="sub-menu">
                                                 <li><a href="/form-team100" title="Tim 100">Tim 100</a></li>
@@ -34,7 +34,7 @@
                                         </li>
                                         <li>
                                             <a href="/kode-wilayah" title="Kode Wilayah">Kode Wilayah</a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                 <div class="right-header align-right">
                     <nav class="main-menu">
                         <ul>
-                            <li>
+                            {{-- <li>
                                 <a href="#" title="Pendaftaran">Pendaftaran</a>
                                 <ul class="sub-menu">
                                     <li><a href="/form-team100" title="Tim 100">Tim 100</a></li>
@@ -61,7 +61,7 @@
                             </li>
                             <li>
                                 <a href="/kode-wilayah" title="Kode Wilayah">Kode Wilayah</a>
-                            </li>
+                            </li> --}}
                             <li>
                                 @if (auth()->check())
                                     <a href="{{ route('dashboard') }}" title="Dashboard"><i class="fa fa-dashboard" style="font-size: 24px"></i></a>

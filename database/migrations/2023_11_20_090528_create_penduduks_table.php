@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('kabupaten_id')->nullable();
             $table->integer('kecamatan_id')->nullable();
             $table->integer('kelurahan_id')->nullable();
+            $table->string('tipe')->nullable();
             $table->string('avatar')->nullable();
             $table->string('image')->nullable();
             $table->enum('verified', ['unverified', 'verified'])->default('unverified');

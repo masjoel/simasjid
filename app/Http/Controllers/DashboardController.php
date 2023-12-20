@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penduduk;
+use App\Models\Provinsi;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
-use App\Models\Member;
-use App\Models\Provinsi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,82 +30,82 @@ class DashboardController extends Controller
 
 
         if ($searchProv == '') {
-            $provinsi = Member::select(
+            $provinsi = Penduduk::select(
                 'provinsis.id',
                 'provinsis.name',
-                Member::raw('count(members.provinsi_id) as jumlah'),
-                Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                Penduduk::raw('count(penduduks.provinsi_id) as jumlah'),
+                Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                 
             )
-                ->leftJoin('provinsis', 'provinsis.id', '=', 'members.provinsi_id')
+                ->leftJoin('provinsis', 'provinsis.id', '=', 'penduduks.provinsi_id')
                 ->when($searchProv, function ($query, $searchProv) {
                     $query->where('provinsis.id', '=', $searchProv);
                 })
                 ->groupBy('provinsis.id', 'provinsis.name')
                 ->orderBy('jumlah', 'desc')
                 ->paginate($limit);
-            $kabupaten = Member::select(
+            $kabupaten = Penduduk::select(
                 'kabupatens.id',
                 'type',
                 'name',
-                Member::raw('count(members.kabupaten_id) as jumlah'),
-                Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                Penduduk::raw('count(penduduks.kabupaten_id) as jumlah'),
+                Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                 
-            )->leftJoin('kabupatens', 'members.kabupaten_id', '=', 'kabupatens.id')
+            )->leftJoin('kabupatens', 'penduduks.kabupaten_id', '=', 'kabupatens.id')
                 ->groupBy('id', 'type', 'name')
                 ->limit(5)
                 ->orderBy('jumlah', 'desc')
                 ->get();
-            $kecamatan = Member::select(
+            $kecamatan = Penduduk::select(
                 'kecamatans.id',
                 'name',
-                Member::raw('count(members.kecamatan_id) as jumlah'),
-                Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                Penduduk::raw('count(penduduks.kecamatan_id) as jumlah'),
+                Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                 
-            )->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')
+            )->leftJoin('kecamatans', 'penduduks.kecamatan_id', '=', 'kecamatans.id')
                 ->groupBy('id', 'name')
                 ->limit(5)
                 ->orderBy('jumlah', 'desc')
                 ->get();
-            $kelurahan = Member::select(
+            $kelurahan = Penduduk::select(
                 'kelurahans.id',
                 'name',
-                Member::raw('count(members.kelurahan_id) as jumlah'),
-                Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                Penduduk::raw('count(penduduks.kelurahan_id) as jumlah'),
+                Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                 
-            )->leftJoin('kelurahans', 'kelurahans.id', '=', 'members.kelurahan_id')
+            )->leftJoin('kelurahans', 'kelurahans.id', '=', 'penduduks.kelurahan_id')
                 ->groupBy('id', 'name')
                 ->orderBy('jumlah', 'desc')
                 ->limit(5)
                 ->get();
         } else {
-            $provinsi = Member::select(
+            $provinsi = Penduduk::select(
                 'provinsis.id',
                 'name',
-                Member::raw('count(members.provinsi_id) as jumlah'),
-                Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                Penduduk::raw('count(penduduks.provinsi_id) as jumlah'),
+                Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                 
-            )->leftJoin('provinsis', 'members.provinsi_id', '=', 'provinsis.id')
+            )->leftJoin('provinsis', 'penduduks.provinsi_id', '=', 'provinsis.id')
                 ->where('provinsis.id', '=', $searchProv)
                 ->groupBy('id', 'name')
                 ->orderBy('jumlah', 'desc')
                 ->get();
 
             if ($searchKab == '') {
-                $kabupaten = Member::select(
+                $kabupaten = Penduduk::select(
                     'kabupatens.id',
                     'type',
                     'name',
-                    Member::raw('count(members.kabupaten_id) as jumlah'),
-                    Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                    Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                    Penduduk::raw('count(penduduks.kabupaten_id) as jumlah'),
+                    Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                    Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                     
-                )->leftJoin('kabupatens', 'members.kabupaten_id', '=', 'kabupatens.id')
+                )->leftJoin('kabupatens', 'penduduks.kabupaten_id', '=', 'kabupatens.id')
                     ->when($searchKab, function ($query, $searchKab) {
                         $query->where('kabupatens.id', '=', $searchKab);
                     })
@@ -113,53 +113,53 @@ class DashboardController extends Controller
                     ->groupBy('id', 'type', 'name')
                     ->orderBy('jumlah', 'desc')
                     ->paginate($limit);
-                $kecamatan = Member::select(
+                $kecamatan = Penduduk::select(
                     'kecamatans.id',
                     'name',
-                    Member::raw('count(members.kecamatan_id) as jumlah'),
-                    Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                    Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                    Penduduk::raw('count(penduduks.kecamatan_id) as jumlah'),
+                    Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                    Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                     
-                )->leftJoin('kecamatans', 'members.kecamatan_id', '=', 'kecamatans.id')
+                )->leftJoin('kecamatans', 'penduduks.kecamatan_id', '=', 'kecamatans.id')
                     ->groupBy('id', 'name')
                     ->limit(5)
                     ->orderBy('jumlah', 'desc')
                     ->get();
-                $kelurahan = Member::select(
+                $kelurahan = Penduduk::select(
                     'kelurahans.id',
                     'name',
-                    Member::raw('count(members.kelurahan_id) as jumlah'),
-                    Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                    Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                    Penduduk::raw('count(penduduks.kelurahan_id) as jumlah'),
+                    Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                    Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                     
-                )->leftJoin('kelurahans', 'kelurahans.id', '=', 'members.kelurahan_id')
+                )->leftJoin('kelurahans', 'kelurahans.id', '=', 'penduduks.kelurahan_id')
                     ->groupBy('id', 'name')
                     ->orderBy('jumlah', 'desc')
                     ->limit(5)
                     ->get();
             } else {
-                $kabupaten = Member::select(
+                $kabupaten = Penduduk::select(
                     'kabupatens.id',
                     'type',
                     'name',
-                    Member::raw('count(members.kabupaten_id) as jumlah'),
-                    Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                    Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                    Penduduk::raw('count(penduduks.kabupaten_id) as jumlah'),
+                    Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                    Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                     
-                )->leftJoin('kabupatens', 'members.kabupaten_id', '=', 'kabupatens.id')
+                )->leftJoin('kabupatens', 'penduduks.kabupaten_id', '=', 'kabupatens.id')
                     ->where('kabupatens.id', '=', $searchKab)
                     ->groupBy('id', 'type', 'name')
                     ->orderBy('jumlah', 'desc')
                     ->get();
                 if ($searchKec == '') {
-                    $kecamatan = Member::select(
+                    $kecamatan = Penduduk::select(
                         'kecamatan_id',
                         'name',
-                        Member::raw('count(members.kecamatan_id) as jumlah'),
-                        Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                        Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                        Penduduk::raw('count(penduduks.kecamatan_id) as jumlah'),
+                        Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                        Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                         
-                    )->leftJoin('kecamatans', 'kecamatans.id', '=', 'members.kecamatan_id')
+                    )->leftJoin('kecamatans', 'kecamatans.id', '=', 'penduduks.kecamatan_id')
                         ->when($searchKec, function ($query, $searchKec) {
                             $query->where('kecamatans.id', '=', $searchKec);
                         })
@@ -168,40 +168,40 @@ class DashboardController extends Controller
                         ->orderBy('jumlah', 'desc')
                         ->paginate($limit);
 
-                    $kelurahan = Member::select(
+                    $kelurahan = Penduduk::select(
                         'kelurahans.id',
                         'name',
-                        Member::raw('count(members.kelurahan_id) as jumlah'),
-                        Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                        Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                        Penduduk::raw('count(penduduks.kelurahan_id) as jumlah'),
+                        Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                        Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                         
-                    )->leftJoin('kelurahans', 'kelurahans.id', '=', 'members.kelurahan_id')
+                    )->leftJoin('kelurahans', 'kelurahans.id', '=', 'penduduks.kelurahan_id')
                         ->groupBy('id', 'name')
                         ->orderBy('jumlah', 'desc')
                         ->limit(5)
                         ->get();
                 } else {
-                    $kecamatan = Member::select(
+                    $kecamatan = Penduduk::select(
                         'kecamatans.id',
                         'name',
-                        Member::raw('count(members.kecamatan_id) as jumlah'),
-                        Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                        Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                        Penduduk::raw('count(penduduks.kecamatan_id) as jumlah'),
+                        Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                        Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                         
-                    )->leftJoin('kecamatans', 'kecamatans.id', '=', 'members.kecamatan_id')
+                    )->leftJoin('kecamatans', 'kecamatans.id', '=', 'penduduks.kecamatan_id')
                         ->where('kecamatans.id', '=', $searchKec)
                         ->groupBy('id', 'name')
                         ->orderBy('jumlah', 'desc')
                         ->get();
 
-                    $kelurahan = Member::select(
+                    $kelurahan = Penduduk::select(
                         'kelurahans.id',
                         'name',
-                        Member::raw('count(members.kelurahan_id) as jumlah'),
-                        Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
-                        Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as total_anjar'),
+                        Penduduk::raw('count(penduduks.kelurahan_id) as jumlah'),
+                        Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as total_daeng'),
+                        Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as total_anjar'),
                         
-                    )->leftJoin('kelurahans', 'kelurahans.id', '=', 'members.kelurahan_id')
+                    )->leftJoin('kelurahans', 'kelurahans.id', '=', 'penduduks.kelurahan_id')
                         ->when($searchKel, function ($query, $searchKel) {
                             $query->where('kelurahans.id', '=', $searchKel);
                         })
@@ -212,20 +212,20 @@ class DashboardController extends Controller
                 }
             }
         }
-        $new_member = Member::limit(5)->orderBy('created_at', 'desc')->get();
-        $totalMembers = Member::select(
+        $new_member = Penduduk::limit(5)->orderBy('created_at', 'desc')->get();
+        $totalMembers = Penduduk::select(
             DB::raw('count(distinct provinsi_id) as total_provinsi'),
             DB::raw('count(distinct kabupaten_id) as total_kabupaten'),
             DB::raw('count(distinct kecamatan_id) as total_kecamatan'),
             DB::raw('count(distinct kelurahan_id) as total_kelurahan'),
             DB::raw('count(id) as total_saksi'),
-            Member::raw('count(case when members.tipe = "daengfaqih" then 1 else null end) as grand_total_daeng'),
-            Member::raw('count(case when members.tipe = "anjar" then 1 else null end) as grand_total_anjar'),
+            Penduduk::raw('count(case when penduduks.tipe = "daengfaqih" then 1 else null end) as grand_total_daeng'),
+            Penduduk::raw('count(case when penduduks.tipe = "anjar" then 1 else null end) as grand_total_anjar'),
         )->first();
 
-        $qry = Member::select(
-            Member::raw('distinct DATE(created_at) as tanggal'),
-            Member::raw('COUNT(id) as qty'),
+        $qry = Penduduk::select(
+            Penduduk::raw('distinct DATE(created_at) as tanggal'),
+            Penduduk::raw('COUNT(id) as qty'),
         );
         $qry->when($search, function ($query, $search) {
             $query->whereMonth('created_at', '=', $search)

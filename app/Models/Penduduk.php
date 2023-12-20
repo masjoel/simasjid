@@ -2,22 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Member extends Model
+class Penduduk extends Model
 {
     use HasFactory;
-    protected $table = 'penduduks';
     protected $guarded = ['id'];
     public function user()
     {
-        return $this->belongsTo(User::class, 'dante_id');
+        return $this->belongsTo(User::class, 'kk_id');
     }
     public function ketuatim()
     {
-        return $this->belongsTo(KetuaTim::class, 'dante_id');
+        return $this->belongsTo(KetuaTim::class, 'kk_id');
     }
     public function provinsi()
     {

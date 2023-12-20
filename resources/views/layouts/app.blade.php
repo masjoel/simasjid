@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
 
     <!-- General CSS Files -->
+    <link rel="shortcut icon" href="{{ asset('image/simasjid-logo.jpg') }}">
     <link rel="stylesheet" href="{{ asset('library/sweetalert2/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('library/bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
