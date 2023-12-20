@@ -27,10 +27,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         ProfilBisnis::create([
-            'nama_client' => 'si Masjid',
-            'nama_app' => 'si Masjid',
+            'nama_client' => 'SIMasjid',
+            'nama_app' => 'SIMasjid',
             'versi_app' => '1.0',
-            'desc_app' => 'Aplikasi kegiatan Masjid',
+            'desc_app' => 'Aplikasi Manajemen Masjid',
             'alamat_client' => 'Jl. Raya No.1',
             'signature' => 'Masjoel',
             'email' => 'masjoel@gmail.com',

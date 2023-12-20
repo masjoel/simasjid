@@ -5,6 +5,14 @@
 
 @section('main')
 <div class="container">
+    <p>
+        Aplikasi Manajemen Masjid (SIMasjid) adalah sebuah platform digital yang dirancang khusus untuk membantu dalam pengelolaan administratif dan operasional sebuah masjid. SIMasjid menyediakan berbagai fitur yang mencakup manajemen keuangan, jadwal kegiatan, data jamaah, inventarisasi aset, serta komunikasi internal. Dengan menggunakan teknologi ini, pengurus masjid dapat mengelola keuangan masjid dengan lebih efisien, melakukan perencanaan kegiatan secara terjadwal, melacak data jamaah, mengatur inventarisasi barang-barang masjid, serta memudahkan komunikasi antara pengurus, petugas, dan jamaah.
+    </p>
+    <p>&nbsp;</p>
+    <p>
+        SIMasjid memainkan peran krusial dalam mengoptimalkan pengelolaan masjid dengan menyediakan akses cepat dan terpusat terhadap informasi yang dibutuhkan. Melalui integrasi teknologi, SIMasjid memungkinkan pemantauan keuangan yang transparan, memudahkan pencatatan kehadiran dan kegiatan, serta memfasilitasi komunikasi yang efektif antara pihak-pihak yang terlibat dalam kegiatan masjid. Dengan demikian, SIMasjid tidak hanya membantu pengelolaan administratif, tetapi juga memperkuat hubungan antara pengurus masjid dan jamaah, serta memperkuat keterlibatan komunitas dalam kegiatan keagamaan dan sosial di masjid.
+    </p>
+
     {{-- <div class="isotope__nav">
         <ul>
             <li><a title="All" href="#" class="active" data-filter="*">All (59)</a></li>
@@ -14,8 +22,8 @@
             <li><a title="Unique Stay" href="#" data-filter=".unique">Unique Stay (44)</a></li>
             <li><a title="Road Trips" href="#" data-filter=".road">Road Trips (17)</a></li>
         </ul>
-    </div> --}}
-    {{-- <div class="isotope__grid post-grid columns-3">
+    </div>
+    <div class="isotope__grid post-grid columns-3">
         <article class="hover__box isotope__grid__item post beaches">
             <div class="post__thumb hover__box__thumb">
                 <a title="Scuba diving for beginners: tips for your first diving trip" href="blog-detail.html"><img src="images/blog/thumb-01.jpg" alt="Scuba diving for beginners: tips for your first diving trip"></a>

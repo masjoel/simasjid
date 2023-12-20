@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>@yield('title') &mdash; Vote</title>
+    <title>@yield('title') &mdash; si Masjid</title>
     <meta name="robots" content="index, follow" />
     <meta name="keywords" content="" />
     <meta name="description" content="" />
@@ -49,25 +49,25 @@
 
 <body>
     <div id="wrapper">
-        {{-- @include('components.home-header')
+        @include('components.home-header')
         <main id="main" class="site-main">
             <div class="page-title page-title--small page-title--blog align-left"
                 style="background-image: url(images/bg/bg-blog.png);">
                 <div class="container">
                     <div class="page-title__content">
-                        <h1 class="page-title__name">Vote</h1>
-                        <p class="page-title__slogan">Badan Koordinasi Saksi</p>
+                        <h1 class="page-title__name">{{ klien('nama_client') }}</h1>
+                        <p class="page-title__slogan">{{ klien('desc_app') }}</p>
                     </div>
                 </div>
             </div>
             <div class="page-content isotope">
                 @yield('main')
             </div>
-        </main> --}}
+        </main>
 
-        {{-- <footer id="footer" class="footer">
+        <footer id="footer" class="footer mt-5">
             <div class="container">
-                <div class="footer__top">
+                {{-- <div class="footer__top">
                     <div class="row">
                         <div class="col-lg-5">
                             <div class="footer__top__info">
@@ -87,12 +87,12 @@
                         <div class="col-lg-3">
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="footer__bottom">
                     <p class="footer__bottom__copyright">Copyright {{ '@' . date('Y') }}</p>
                 </div>
             </div>
-        </footer> --}}
+        </footer>
 
     </div>
 </body>

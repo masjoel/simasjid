@@ -29,7 +29,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     )->name('dashboard')->middleware('can:dashboard');
     Route::get('profile-edit', function () {
         return view('pages.profile');
-        // return view('pages.profile', ['type_menu' => '']);
     })->name('profile.edit');
     Route::resource('user', UserController::class);
     Route::resource('profil-bisnis', ProfilBisnisController::class);
