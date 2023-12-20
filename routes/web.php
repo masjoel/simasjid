@@ -3,11 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\FormulirContoller;
-use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PendudukController;
 use App\Http\Controllers\ProfilBisnisController;
+use App\Http\Controllers\ZisCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +31,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/export-penduduk', [PendudukController::class, 'exportToExcel']);
     Route::resource('penduduk', PendudukController::class);
+    Route::resource('zis-category', ZisCategoryController::class);
 });
