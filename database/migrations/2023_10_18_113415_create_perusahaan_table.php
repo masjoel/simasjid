@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('perusahaan', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->nullable();
+            $table->string('id_client', 50)->nullable();
             $table->string('nama_client', 50)->nullable();
             $table->string('nama_app', 50)->nullable();
             $table->string('versi_app', 30)->nullable();
@@ -27,6 +28,10 @@ return new class extends Migration
             $table->string('init', 100)->nullable();
             $table->string('bank', 150)->nullable();
             $table->string('footnot', 250)->nullable();
+            $table->integer('provinsi_id')->nullable();
+            $table->integer('kabupaten_id')->nullable();
+            $table->integer('kecamatan_id')->nullable();
+            $table->integer('kelurahan_id')->nullable();
             $table->tinyInteger('jdigit')->default(0);
             $table->tinyInteger('jdelay')->default(0);
             $table->timestamps();

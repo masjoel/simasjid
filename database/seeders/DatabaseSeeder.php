@@ -27,13 +27,13 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         ProfilBisnis::create([
-            'nama_client' => 'Bakorsi',
-            'nama_app' => 'Bakorsi',
+            'nama_client' => 'si Masjid',
+            'nama_app' => 'si Masjid',
             'versi_app' => '1.0',
-            'desc_app' => 'Aplikasi untuk mencatat BAKORSI',
+            'desc_app' => 'Aplikasi kegiatan Masjid',
             'alamat_client' => 'Jl. Raya No.1',
-            'signature' => 'dr. Ganis Irawan, SpPD',
-            'email' => 'ganesi@gmail.com',
+            'signature' => 'Masjoel',
+            'email' => 'masjoel@gmail.com',
             'logo' => null,
             'jam' => now(),
             'mcad' => null,
@@ -43,13 +43,9 @@ class DatabaseSeeder extends Seeder
             'jdigit' => 0,
             'jdelay' => 0,
         ]);
-        // Dante::create([
-        //     'nama' => 'dr. Ganis Irawan, SpPD',
-        // ]);
         $this->call([
             UserSeeder::class,
             FromJsonSeeder::class,
-            // ToJsonSeeder::class,
         ]);
     }
 }
